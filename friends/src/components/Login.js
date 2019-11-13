@@ -1,58 +1,47 @@
 import React, { useState } from 'react';
-import axiosWithAuth from '../utils/axiosWithAuth';
+import { useHistory } from 'react-router-dom';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
-// class Login extends React.Component {
-//     state = {
-//         credentials: {
-//             username: "",
-//             password: ""
-//         },
-//         isLoggedIn: false
-//     }
+const Login = () => {
 
-
-// }
-
-function Login() {
-
-    const [credentials, setCredentials] = useState({
+    const [userCredentials, setUserCredentials] = useState({
         username: '',
         password: ''
-    })
+    });
 
-    handleChange = e => {
-        setCredentials({
-            credentials: {
-                ...credentials,
-                [e.target.name]: e.target.value
-            }
-        })
-    }
+    const history = useHistory();
 
-    login = e => {
+    const handleChange = e => {
+        setUserCredentials({
+            ...userCredentials,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    const onSubmit = e => {
         e.preventDefault();
         axiosWithAuth()
-            .post('/login', credentials)
+            .post('/login', userCredentials)
             .then(response => {
                 localStorage.setItem('token', response.data.payload);
-                props.history.push('/protected');
+                history.push('/friends');
             })
             .catch(error => console.log('login error', error));
     }
 
     return (
         <div>
-            <form onSubmit={login}>
+            <form onSubmit={onSubmit}>
                 <input
                     type='text'
                     name='username'
-                    value={credentials.username}
+                    value={userCredentials.username}
                     onChange={handleChange}
                 />
                 <input
                     type='password'
                     name='password'
-                    value={credentials.password}
+                    value={userCredentials.password}
                     onChange={handleChange}
                 />
                 <button>Log in</button>
