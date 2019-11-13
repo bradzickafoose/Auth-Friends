@@ -5,7 +5,7 @@ import './App.css';
 
 import Login from '../routes/Login';
 import PrivateRoute from '../components/PrivateRoute';
-
+import Friends from '../routes/Friends';
 
 function App() {
   return (
@@ -26,7 +26,7 @@ function App() {
               {localStorage.getItem('token') ? <Redirect to='/' /> : <Login />}
             </Route>
             <PrivateRoute path='/'>
-              <h1>Friends</h1>
+              <Friends />
             </PrivateRoute>
           </Switch>
         </section>
