@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
-const Login = () => {
+const LoginForm = () => {
 
     const [userCredentials, setUserCredentials] = useState({
         username: '',
@@ -50,4 +50,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default LoginForm
