@@ -12,15 +12,16 @@ function App() {
     <Router>
       <div className='App'>
         <header className='App-header'>
-          <img src={logo} className='App-logo' alt='logo' />
-          <h1>Auth Friends</h1>
+          <div className='Logo-container'>
+            <img src={logo} className='Logo' alt='logo' />
+            <h1>Auth Friends</h1>
+          </div>
+          <nav>
+            <Link to='/login'>Login</Link>
+            <Link to='/friends'>Friends</Link>
+          </nav>
         </header>
         <section>
-          <ul>
-            <li>
-              <Link to='/login'>Login</Link>
-            </li>
-          </ul>
           <Switch>
             <Route path='/login'>
               {localStorage.getItem('token') ? <Redirect to='/' /> : <Login />}

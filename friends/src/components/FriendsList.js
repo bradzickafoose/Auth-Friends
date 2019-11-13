@@ -7,17 +7,21 @@ const FriendsList = () => {
 
     useEffect(() => {
         axiosWithAuth()
-            .get('/api/friends')
+            .get('/friends')
             .then(response => setFriends(response.data))
             .catch(err => console.error(err))
-    })
+    }, [])
 
     return (
         <div>
-            <AddFriendForm />
+            <AddFriendForm setFriends={setFriends} />
             {friends.map(friend => (
                 <div key={friend.id}>
                     <h3>{friend.name}</h3>
+                    <div className='Friend'>
+                        <span>{friend.age}</span>
+                        <span>{friend.email}</span>
+                    </div>
                 </div>
             ))}
         </div>

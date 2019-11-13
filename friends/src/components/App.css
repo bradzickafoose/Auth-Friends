@@ -2,21 +2,34 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
+.Logo-container {
+  display: flex;
+  justify-content: center;
+}
+
+.Logo-container img {
+  height: 50px;
+}
+
+.Logo-container h1 {
+  font-size: 1rem;
 }
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height:70px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: space-between;
   color: white;
+  padding: 1em;
 }
 
-.App-link {
-  color: #09d3ac;
+.App-header nav a {
+  color: #fff;
+  text-decoration: none;
+}
+.App-header nav a:hover {
+  color: #fff;
+  text-decoration: underline;
 }
