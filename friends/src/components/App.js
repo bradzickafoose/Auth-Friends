@@ -8,6 +8,7 @@ import PrivateRoute from '../components/PrivateRoute';
 import Friends from '../routes/Friends';
 
 function App() {
+
   return (
     <Router>
       <div className='App'>
@@ -19,18 +20,17 @@ function App() {
           <nav>
             <Link to='/login'>Login</Link>
             <Link to='/friends'>Friends</Link>
+            <Link to='/login' onClick={() => localStorage.removeItem('token')}>Logout</Link>
           </nav>
         </header>
-        <section>
-          <Switch>
-            <Route path='/login'>
-              {localStorage.getItem('token') ? <Redirect to='/' /> : <Login />}
-            </Route>
-            <PrivateRoute path='/'>
-              <Friends />
-            </PrivateRoute>
-          </Switch>
-        </section>
+        <Switch>
+          <Route path='/login'>
+            {localStorage.getItem('token') ? <Redirect to='/' /> : <Login />}
+          </Route>
+          <PrivateRoute path='/'>
+            <Friends />
+          </PrivateRoute>
+        </Switch>
       </div>
     </Router>
   );
