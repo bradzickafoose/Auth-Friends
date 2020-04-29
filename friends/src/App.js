@@ -1,16 +1,15 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Redirect, Switch, Link } from 'react-router-dom';
+import { Route, Redirect, Switch, Link } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 
-import Login from '../routes/Login';
-import PrivateRoute from '../components/PrivateRoute';
-import Friends from '../routes/Friends';
+import Login from './components/Login';
+import PrivateRoute from './components/PrivateRoute';
+import Friends from './components/Friends';
 
 function App() {
 
   return (
-    <Router>
       <div className='App'>
         <header className='App-header'>
           <div className='Logo-container'>
@@ -32,7 +31,6 @@ function App() {
           </PrivateRoute>
         </Switch>
       </div>
-    </Router>
   );
 }
 
