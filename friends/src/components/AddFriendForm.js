@@ -21,6 +21,7 @@ const AddFriendForm = props => {
             .post('/friends', friend)
             .then(response => props.setFriends(response.data))
             .catch(error => console.log('login error', error));
+
         setFriend({
             ...friend,
             name: '',

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Friend = ({name, age, email}) => {
+const Friend = ({ name, age, email }) => {
     return (
       <>
         <h3>{name}</h3>
