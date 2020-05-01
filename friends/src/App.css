@@ -10,6 +10,11 @@
 .Logo-container h1 {
   font-size: 1rem;
 }
+
+.App {
+  background-color: #f7fafc;
+  padding-bottom: 4rem;
+}
 .App-header {
   background-color: #282c34;
   min-height:70px;
