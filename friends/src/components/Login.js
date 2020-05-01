@@ -39,6 +39,9 @@ const Login = ({ setIsAuthenticated }) => {
   return (
       <>
         <div className="w-full max-w-xs mx-auto mt-6">
+          <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
+        Sign in to your Auth Friends account
+          </h2>
           <form onSubmit={handleSubmit} className="px-8 pt-6 pb-6 mb-4">
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
