@@ -1,18 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { axiosWithAuth } from '../utils/axiosWithAuth';
+import React from 'react';
 import AddFriendForm from './AddFriendForm';
 import Friend from './Friend';
 
-const Friends = () => {
-    const [friends, setFriends] = useState([]);
-
-    useEffect(() => {
-        axiosWithAuth()
-            .get('/friends')
-            .then(response => setFriends(response.data))
-            .catch(error => console.error(error))
-    }, [])
-
+const Friends = ({ friends, setFriends }) => {
     return (
         <>
             <h2>Friends</h2>
