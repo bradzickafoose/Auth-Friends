@@ -1,33 +1,36 @@
-import React from 'react';
-import { Route, Redirect, Switch, Link } from 'react-router-dom';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
+import { Route, Redirect, Switch } from 'react-router-dom';
+import { axiosWithAuth } from './utils/axiosWithAuth';
 import './App.css';
 
+import Header from './components/Header';
 import Login from './components/Login';
 import PrivateRoute from './components/PrivateRoute';
 import Friends from './components/Friends';
 
 function App() {
+  const [ isAuthenticated, setIsAuthenticated ] = useState(!!localStorage.getItem('token'));
+  const [ friends, setFriends ] = useState([]);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      axiosWithAuth()
+          .get('/friends')
+          .then(response => setFriends(response.data))
+          .catch(error => console.error('Error fetching friends', error));
+    }
+  }, [isAuthenticated]);
 
   return (
       <div className='App'>
-        <header className='App-header'>
-          <div className='Logo-container'>
-            <img src={logo} className='Logo' alt='logo' />
-            <h1>Auth Friends</h1>
-          </div>
-          <nav>
-            <Link to='/login'>Login</Link>
-            <Link to='/friends'>Friends</Link>
-            <Link to='/login' onClick={() => localStorage.removeItem('token')}>Logout</Link>
-          </nav>
-        </header>
+        <Header isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
+
         <Switch>
           <Route path='/login'>
-            {localStorage.getItem('token') ? <Redirect to='/' /> : <Login />}
+            {localStorage.getItem('token') ? <Redirect to='/' /> : <Login setIsAuthenticated={setIsAuthenticated} />}
           </Route>
-          <PrivateRoute path='/'>
-            <Friends />
+          <PrivateRoute path='/' isAuthenticated={isAuthenticated}>
+            <Friends friends={friends} setFriends={setFriends} />
           </PrivateRoute>
         </Switch>
       </div>
